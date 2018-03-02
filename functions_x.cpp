@@ -17,10 +17,11 @@ arma::mat potts_c(arma::mat P, NumericMatrix Theta);
 arma::mat potts2_c(arma::mat P, NumericMatrix Theta, IntegerMatrix Delta);
 
 // [[Rcpp::export]]
-Rcpp::List mcmc_hidden_2(int H, int L, int Q, NumericMatrix potts_info, NumericMatrix Theta_s, NumericMatrix Theta_0_s, IntegerMatrix Delta_s, arma::mat P, double d_s, int iter, int burn, double mu, double mu_0, double sigma, double sigma_0, int E, double dd, double ff, double a_d, double b_d) {
+Rcpp::List mcmc_hidden_2(int H, int L, int Q, NumericMatrix potts_info, NumericMatrix Theta_s, NumericMatrix Theta_0_s, IntegerMatrix Delta_s, arma::mat P, double d_s, int iter, int burn, double mu, double mu_0, double sigma, double sigma_0, double dd, double ff, double a_d, double b_d) {
   int i, q, qq, qqq, qqqq, l, h, ll, hh, e, m, count, temp, temp_2;
   int count_2 = 10;
   int M = 1;
+  int E = (H*L)*0.05;
   double tau = 0.1;
   double phi = 0.1;
   double hastings = 0;

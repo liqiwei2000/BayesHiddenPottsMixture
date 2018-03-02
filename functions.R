@@ -12,11 +12,6 @@ array2matrix_r = function(theta) {
   return (Theta);
 }
 
-ari_r <- function(zt, z) {
-  library(mclust);
-  return (adjustedRandIndex(zt, z));
-}
-
 bayes_fdr <- function(PPI, alpha) {
   PPI_sorted <- sort(PPI, decreasing = TRUE);
   k <- 1;
