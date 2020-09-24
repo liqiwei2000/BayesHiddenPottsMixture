@@ -452,7 +452,8 @@ Rcpp::List mcmc_hidden_2(int H, int L, int Q, NumericMatrix potts_info, NumericM
           P_temp = potts2_c(P_temp, Theta_temp, Delta);
         }
         hastings = hamiltonian2_c(P_temp, Theta, Delta) - hamiltonian2_c(P, Theta, Delta) + hamiltonian2_c(P, Theta_temp, Delta) - hamiltonian2_c(P_temp, Theta_temp, Delta);
-        hastings = hastings - log(sigma) - (Theta_temp(q, qq) - mu)*(Theta_temp(q, qq) - mu)/2/sigma/sigma;
+        hastings = hastings - (Theta_temp(q, qq) - mu)*(Theta_temp(q, qq) - mu)/2/sigma/sigma;
+        hastings = hastings + (Theta(q, qq) - mu)*(Theta(q, qq) - mu)/2/sigma/sigma;
         if (hastings >= log(double(rand()%10001)/10000))
         {
           Theta(q, qq) = Theta_temp(q, qq);
@@ -490,7 +491,8 @@ Rcpp::List mcmc_hidden_2(int H, int L, int Q, NumericMatrix potts_info, NumericM
           P_temp = potts2_c(P_temp, Theta_temp, Delta_0);
         }
         hastings = hamiltonian2_c(P_temp, Theta_0, Delta_0) - hamiltonian2_c(P, Theta_0, Delta_0) + hamiltonian2_c(P, Theta_temp, Delta_0) - hamiltonian2_c(P_temp, Theta_temp, Delta_0);
-        hastings = hastings - log(sigma_0) - (Theta_temp(q, qq) - mu_0)*(Theta_temp(q, qq) - mu_0)/2/sigma_0/sigma_0;
+        hastings = hastings - (Theta_temp(q, qq) - mu_0)*(Theta_temp(q, qq) - mu_0)/2/sigma_0/sigma_0;
+        hastings = hastings + (Theta_0(q, qq) - mu_0)*(Theta_0(q, qq) - mu_0)/2/sigma_0/sigma_0;
         if (hastings >= log(double(rand()%10001)/10000))
         {
           Theta_0(q, qq) = Theta_temp(q, qq);
